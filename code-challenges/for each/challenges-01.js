@@ -37,7 +37,7 @@ const addValues = (arr, value) => {
 };
 
 const addNumbers = (num, arr, times, callback) => {
-  for (let i = 0; i < times; i++){
+  for (let i = 0; i < times; i++) {
     callback(arr, num);
   }
   return arr;
@@ -56,13 +56,13 @@ Return the modified array.
 ------------------------------------------------------------------------------------------------ */
 
 const removeOne = (num, arr) => {
-  if(num % 3 === 2) {
+  if (num % 3 === 2) {
     arr.pop();
   }
 };
 
 const removeElements = (arr, callback) => {
-  for(let i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     callback(arr[i], arr);
   }
   return arr;
@@ -79,7 +79,7 @@ Write a function named removeWithForEach that produces the same output as challe
 ------------------------------------------------------------------------------------------------ */
 
 const removeWithForEach = (arr, callback) => {
-  arr.forEach( function(value){
+  arr.forEach(function (value) {
     callback(value, arr)
   });
   return arr;
@@ -99,8 +99,8 @@ This anonymous function should accept up to three arguments: the element, the in
 ------------------------------------------------------------------------------------------------ */
 
 const removeWithAnon = (arr) => {
-  arr.forEach( function(value, index, arr){
-    if(value % 3 === 2) {
+  arr.forEach(function (value, index, arr) {
+    if (value % 3 === 2) {
       arr.pop();
     }
   });
@@ -126,20 +126,18 @@ This function should use forEach to populate your grocery list based on the stor
 
 const createList = (availableItems) => {
   let groceryList = [];
-//if(value % 3 === 2) {
-//   arr.pop();
-// }
-// arr.forEach(callback(currentValue [, index [, array]])[, thisArg]);
-
-arr.forEach( function(value, index, arr){
-  if (inventory.available === true {
-    // then do somethig
-
-  } 
-  else if (inventory.available === false, 
-    //then do somethig
-
+  availableItems.forEach((val, idx, arr) => {
+    if (val.available) {
+      groceryList.push(val.name);
+    }
+  });
+  return groceryList;
 };
+
+//   else if (inventory.available === false, 
+//     //then do somethig
+
+// };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7
@@ -156,7 +154,16 @@ Return the resulting output array.
 ------------------------------------------------------------------------------------------------ */
 
 const fizzbuzz = (arr) => {
-  // Solution code here...
+  arr.forEach((one, two, arr) => {
+    if (one % 3 === 0) {
+      if (one % 5 === 0) {
+        arr[two] = 'Fizz Buzz';
+      }
+      else arr[two] = 'Fizz';
+    }
+    else if (one % 5 === 0) arr[two] = 'Buzz';
+  });
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -204,7 +211,7 @@ describe('Testing challenge 5', () => {
   });
 });
 
-xdescribe('Testing challenge 6', () => {
+describe('Testing challenge 6', () => {
   const inventory = [{ name: 'apples', available: true }, { name: 'pears', available: true }, { name: 'oranges', available: false }, { name: 'bananas', available: true }, { name: 'blueberries', available: false }];
 
   test('It should only add the available items to the list', () => {
@@ -213,7 +220,7 @@ xdescribe('Testing challenge 6', () => {
   });
 });
 
-xdescribe('Testing challenge 7', () => {
+describe('Testing challenge 7', () => {
   const inputs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
   test('It should print out messages or numbers', () => {
