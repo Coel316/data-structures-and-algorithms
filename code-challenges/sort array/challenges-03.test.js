@@ -295,26 +295,26 @@ describe('Testing challenge 7', () => {
   });
 });
 
-// describe('Testing challenge 8', () => {
-//   test('It should sort people with more strict ordering', () => {
-//     const family = [
-//       new Person('Casey', 'Codefellows', 55),
-//       new Person('Casey', 'Codefellows', 37),
-//       new Person('Charlie', 'Codefellows', 21),
-//       new Person('Charles', 'Codefellows', 29),
-//       new Person('Carol', 'Codefellow', 88),
-//     ];
-//     expect(sortPeopleBetter(family)).toStrictEqual([
-//       new Person('Carol', 'Codefellow', 88),
-//       new Person('Casey', 'Codefellows', 37),
-//       new Person('Casey', 'Codefellows', 55),
-//       new Person('Charles', 'Codefellows', 29),
-//       new Person('Charlie', 'Codefellows', 21),
-//     ]);
-//     expect(sortPeopleBetter([{firstName: 'andrew', lastName: 'apple'}, {firstName: 'andre', lastName: 'apple'}]))
-//       .toStrictEqual([{firstName: 'andre', lastName: 'apple'}, {firstName: 'andrew', lastName: 'apple'}]);
-//   });
-// });
+describe('Testing challenge 8', () => {
+  test('It should sort people with more strict ordering', () => {
+    const family = [
+      new Person('Casey', 'Codefellows', 55),
+      new Person('Casey', 'Codefellows', 37),
+      new Person('Charlie', 'Codefellows', 21),
+      new Person('Charles', 'Codefellows', 29),
+      new Person('Carol', 'Codefellow', 88),
+    ];
+    expect(sortPeopleBetter(family)).toStrictEqual([
+      new Person('Carol', 'Codefellow', 88),
+      new Person('Casey', 'Codefellows', 37),
+      new Person('Casey', 'Codefellows', 55),
+      new Person('Charles', 'Codefellows', 29),
+      new Person('Charlie', 'Codefellows', 21),
+    ]);
+    expect(sortPeopleBetter([{firstName: 'andrew', lastName: 'apple'}, {firstName: 'andre', lastName: 'apple'}]))
+      .toStrictEqual([{firstName: 'andre', lastName: 'apple'}, {firstName: 'andrew', lastName: 'apple'}]);
+  });
+});
 
 // describe('Testing challenge 9', () => {
 //   test('It should sort meetings by the day on which they happen', () => {
