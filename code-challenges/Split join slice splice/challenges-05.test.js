@@ -14,12 +14,19 @@ For example, if the input is 'Welcome', the output will be:
 ------------------------------------------------------------------------------------------------ */
 
 const howMuchPencil = (str) => {
-  let result = [];
-  // for (let i = 0; i < str.length; i++) {
-  // arr.slice(i)
-  // }
-  return result;
+  let numOne = [str];
+  let anArray = str.split('');
+  for (let i = 0; i < str.length; i++) {
+    anArray.splice(0, 1);
+    numOne.push(anArray.join(''));
+  }
+
+  return numOne;
 };
+
+// for (let i = 0; i < str.length; i++) {
+// arr.slice(i)
+// }
 //array.slice(start, end)
 
 /* ------------------------------------------------------------------------------------------------
@@ -33,6 +40,7 @@ For example, wordsToCharList('gregor') returns ['g','r','e','g','o','r'].
 const wordsToCharList = (arr) => {
   var words = arr.split('');
   // console.log(words)
+
   return words;
 };
 // var output = "Hello world!".split('');
@@ -81,7 +89,13 @@ const gruffaloCrumble = {
 
 const listFoods = (recipe) => {
   let result = [];
- 
+  let foodArray = recipe.ingredients;
+  foodArray.forEach(ingredient => {
+    let store = ingredient.split(' ');
+    store.splice(0,2);
+    result.push(store.join(' '));
+  });
+
   return result;
 };
 
@@ -95,7 +109,13 @@ You may also use other string or array methods.
 
 const splitFoods = (recipe) => {
   let result = [];
-  // Solution code here...
+  let numOne = recipe.ingredients;
+  numOne.forEach(ingredient => {
+    let useSplit = ingredient.split(' ');
+    useSplit.splice(0,2);
+    result.push(useSplit.join(' '));
+  });
+
   return result;
 };
 
@@ -111,14 +131,21 @@ Return a new array containing just the verbs. For example, ['Mix until evenly di
 
 const stepActions = (recipe) => {
   let result = [];
-  // Solution code here...
+  let numOne = recipe.steps;
+  numOne.forEach(step => {
+    let extractAction = step.split(' ');
+    extractAction.splice(1);
+    result.push(extractAction.join(' '));
+  });
+
   return result;
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
 
-Write a function named removeEvenValues that, given an array of integers as input, deletes all even values from the array, leaving no 'gaps' behind.
+Write a function named removeEvenValues that, given an array of integers as input, 
+deletes all even values from the array, leaving no 'gaps' behind.
 
 The array should be modified in-place.
 
@@ -129,8 +156,20 @@ For example:
 ------------------------------------------------------------------------------------------------ */
 
 const removeEvenValues = (arr) => {
-  // Solution code here...
+  for(let i = arr.length; i >= 0; i--) {
+    if(arr[i] % 2 === 0) arr.splice(i, 1);
+  }
 };
+
+// const removeEvenValues = (arr) => {
+//   for (let i = 0; i < arr.length; i++){
+//     if (arr[i] % 2 === 0)
+//       arr.splice([i],1);
+    
+//   }
+
+//   return arr;
+// };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 7
@@ -148,9 +187,18 @@ removeLastCharacters('Gregor', 9) returns ''
 ------------------------------------------------------------------------------------------------ */
 
 const removeLastCharacters = (str, numberOfCharacters) => {
-  // Solution code here...
-};
+  if(numberOfCharacters >= str.length){
+    str = '';
+    return str;
 
+  } else if(numberOfCharacters < 0) {
+    return str;
+
+  } else {
+    str = str.substring(0, str.length - numberOfCharacters);
+    return str;
+  }
+};
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 8 - Stretch Goal
@@ -202,14 +250,14 @@ Run your tests from the console: jest challenges-05.test.js
 
 ------------------------------------------------------------------------------------------------ */
 
-// describe('Testing challenge 1', () => {
-//   test('It should return a list of shortening words', () => {
-//     expect(howMuchPencil('Welcome')).toStrictEqual(['Welcome', 'elcome', 'lcome', 'come', 'ome', 'me', 'e', '']);
-//     expect(howMuchPencil('Welcome').length).toStrictEqual(8);
-//     expect(howMuchPencil('')).toStrictEqual(['']);
-//     expect(howMuchPencil('abc')).toStrictEqual(['abc', 'bc', 'c', '']);
-//   });
-// });
+describe('Testing challenge 1', () => {
+  test('It should return a list of shortening words', () => {
+    expect(howMuchPencil('Welcome')).toStrictEqual(['Welcome', 'elcome', 'lcome', 'come', 'ome', 'me', 'e', '']);
+    expect(howMuchPencil('Welcome').length).toStrictEqual(8);
+    expect(howMuchPencil('')).toStrictEqual(['']);
+    expect(howMuchPencil('abc')).toStrictEqual(['abc', 'bc', 'c', '']);
+  });
+});
 
 describe('Testing challenge 2', () => {
   test('It should return an array of individual letters', () => {
@@ -227,47 +275,47 @@ describe('Testing challenge 3', () => {
   });
 });
 
-// describe('Testing challenge 4', () => {
-//   test('It should return a list of foods', () => {
-//     expect(splitFoods(gruffaloCrumble)).toStrictEqual(['Gruffalo', 'oats', 'brown sugar', 'flour', 'pure maple syrup', 'chopped nuts', 'baking soda', 'baking powder', 'cinnamon', 'melted butter', 'fresh water']);
-//   });
-// });
+describe('Testing challenge 4', () => {
+  test('It should return a list of foods', () => {
+    expect(splitFoods(gruffaloCrumble)).toStrictEqual(['Gruffalo', 'oats', 'brown sugar', 'flour', 'pure maple syrup', 'chopped nuts', 'baking soda', 'baking powder', 'cinnamon', 'melted butter', 'fresh water']);
+  });
+});
 
-// describe('Testing challenge 5', () => {
-//   test('It should return a list of recipe steps', () => {
-//     expect(stepActions(gruffaloCrumble)).toStrictEqual(['Pre-heat', 'De-prickle', 'Sprinkle', 'Mix', 'Grease', 'Combine', 'Fold', 'Spread', 'Bake']);
-//     expect(stepActions(gruffaloCrumble).length).toStrictEqual(9);
-//   });
-// });
+describe('Testing challenge 5', () => {
+  test('It should return a list of recipe steps', () => {
+    expect(stepActions(gruffaloCrumble)).toStrictEqual(['Pre-heat', 'De-prickle', 'Sprinkle', 'Mix', 'Grease', 'Combine', 'Fold', 'Spread', 'Bake']);
+    expect(stepActions(gruffaloCrumble).length).toStrictEqual(9);
+  });
+});
 
-// describe('Testing challenge 6', () => {
-//   test('It should remove the even numbers from the array', () => {
-//     let list = [1, 2, 3, 4, 5, 6];
-//     removeEvenValues(list);
-//     expect(list).toStrictEqual([1, 3, 5]);
+describe('Testing challenge 6', () => {
+  test('It should remove the even numbers from the array', () => {
+    let list = [1, 2, 3, 4, 5, 6];
+    removeEvenValues(list);
+    expect(list).toStrictEqual([1, 3, 5]);
 
-//     list = [6, 3, 19, 43, 12, 66, 43];
-//     removeEvenValues(list);
-//     expect(list).toStrictEqual([3, 19, 43, 43]);
-//     expect(list.length).toStrictEqual(4);
-//   });
-// });
+    list = [6, 3, 19, 43, 12, 66, 43];
+    removeEvenValues(list);
+    expect(list).toStrictEqual([3, 19, 43, 43]);
+    expect(list.length).toStrictEqual(4);
+  });
+});
 
-// describe('Testing challenge 7', () => {
-//   test('It should shorten the string based on the first argument', () => {
-//     expect(removeLastCharacters('Gregor', 2)).toStrictEqual('Greg');
-//     expect(removeLastCharacters('Gregor', 2).length).toStrictEqual(4);
-//   });
-//   test('It should return the complete string when passed a negative number', () => {
-//     expect(removeLastCharacters('hello', -1)).toStrictEqual('hello');
-//     expect(removeLastCharacters('wowow', -700)).toStrictEqual('wowow');
-//   });
-//   test('It should return an empty string when called with a number larger than the string length', () => {
-//     expect(removeLastCharacters('hello', 12)).toStrictEqual('');
-//     expect(removeLastCharacters('', 1)).toStrictEqual('');
-//     expect(removeLastCharacters('a', 1)).toStrictEqual('');
-//   });
-// });
+describe('Testing challenge 7', () => {
+  test('It should shorten the string based on the first argument', () => {
+    expect(removeLastCharacters('Gregor', 2)).toStrictEqual('Greg');
+    expect(removeLastCharacters('Gregor', 2).length).toStrictEqual(4);
+  });
+  test('It should return the complete string when passed a negative number', () => {
+    expect(removeLastCharacters('hello', -1)).toStrictEqual('hello');
+    expect(removeLastCharacters('wowow', -700)).toStrictEqual('wowow');
+  });
+  test('It should return an empty string when called with a number larger than the string length', () => {
+    expect(removeLastCharacters('hello', 12)).toStrictEqual('');
+    expect(removeLastCharacters('', 1)).toStrictEqual('');
+    expect(removeLastCharacters('a', 1)).toStrictEqual('');
+  });
+});
 
 // describe('Testing challenge 8', () => {
 //   test('It should add up the numbers contained within the string', () => {
