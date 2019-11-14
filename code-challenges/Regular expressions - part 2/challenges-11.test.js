@@ -63,7 +63,7 @@ const validatePhoneNumber = (phoneNumber) => {
   else {return false;}
 };
 
-/* ------------------------------------------------------------------------------------------------
+/* --------------------------------------------------------------------------------------------------
 CHALLENGE 4 - Stretch Goal
 
 Write a function named findTagNames that iterates over an array of HTML strings and uses a regular expression pattern to return the closing tags.
